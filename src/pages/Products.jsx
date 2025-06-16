@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { useAuth } from "@clerk/clerk-react";
 import { Search, Filter, Sparkles, Leaf, Apple, AlignLeft, Grid, List, ChevronDown, Star, Zap, Recycle } from "lucide-react";
 
@@ -199,6 +200,13 @@ function ProductGridSkeleton() {
     </div>
   );
 }
+=======
+import ProductCard from "../components/ProductCard";
+import ProductFilters from "../components/ProductFilters";
+import { Skeleton } from "../components/ui/skeleton";
+import { getFilteredProducts } from "../api/getFlteredProducts";
+// import { getFilteredProducts } from "../api/getFilteredProducts"; // ✅ import your mock function
+>>>>>>> 07b86f29ee33299f6ff4718db9171158d4081a92
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -220,8 +228,12 @@ export default function ProductsPage() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
+<<<<<<< HEAD
       const response = await fetch("/api/products");
       const data = await response.json();
+=======
+      const data = await getFilteredProducts(filters); // 🔁 Replaced fetch call with mock
+>>>>>>> 07b86f29ee33299f6ff4718db9171158d4081a92
       setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -258,6 +270,7 @@ export default function ProductsPage() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-emerald-900 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -301,6 +314,27 @@ export default function ProductsPage() {
               <Recycle className="w-4 h-4 text-green-600" />
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Recyclable</span>
             </div>
+=======
+    <div className="min-h-screen bg-background">
+      <main className="container mx-auto px-4 py-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <aside className="lg:w-1/4">
+            <ProductFilters filters={filters} onFiltersChange={setFilters} />
+          </aside>
+          <div className="lg:w-3/4">
+            <h1 className="text-3xl font-bold mb-8 text-green-800 dark:text-green-400">
+              Eco-Friendly Products
+            </h1>
+            {loading ? (
+              <ProductGridSkeleton />
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {products.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
+>>>>>>> 07b86f29ee33299f6ff4718db9171158d4081a92
           </div>
         </div>
 
