@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-
-// Update these imports to match your actual file structure
-import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import ProductFilters from "../components/ProductFilters";
 import { Skeleton } from "../components/ui/skeleton";
+import { getFilteredProducts } from "../api/getFilteredProducts"; // ✅ import your mock function
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -22,13 +20,7 @@ export default function ProductsPage() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const queryParams = new URLSearchParams();
-      if (filters.category) queryParams.append("category", filters.category);
-      if (filters.ecoGrade) queryParams.append("ecoGrade", filters.ecoGrade);
-      if (filters.priceRange) queryParams.append("priceRange", filters.priceRange);
-
-      const response = await fetch(`/api/products?${queryParams}`);
-      const data = await response.json();
+      const data = await getFilteredProducts(filters); // 🔁 Replaced fetch call with mock
       setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -39,7 +31,6 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <main className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           <aside className="lg:w-1/4">

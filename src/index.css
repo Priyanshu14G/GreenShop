@@ -61,13 +61,14 @@
     --chart-5: 340 75% 55%;
   }
 
-  * {
+  /* * {
     @apply border-border;
-  }
+  } */
 
   body {
-    @apply bg-background text-foreground;
-  }
+  @apply transition-colors duration-300 ;
+}
+
 }
 
 /* Custom Utility */
