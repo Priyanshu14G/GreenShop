@@ -6,8 +6,7 @@ const mockProducts = [
     image: "/placeholder.svg?height=500&width=500",
     ecoGrade: "A+",
     category: "personal-care",
-    description:
-      "Biodegradable bamboo toothbrushes with soft bristles...",
+    description: "Biodegradable bamboo toothbrushes with soft bristles...",
     carbonSaved: 0.5,
     features: [
       "100% biodegradable bamboo handle",
@@ -78,16 +77,56 @@ const mockProducts = [
       Diameter: "7cm",
     },
   },
-]
+];
 
 // This mimics a GET API call
 export function getProductById(id) {
   return new Promise((resolve, reject) => {
-    const product = mockProducts.find((p) => p.id === id)
+    const product = mockProducts.find((p) => p.id === id);
     if (!product) {
-      reject({ error: "Product not found", status: 404 })
+      reject({ error: "Product not found", status: 404 });
     } else {
-      resolve(product)
+      resolve(product);
     }
-  })
+  });
 }
+
+export function getFilteredProducts(filters) {
+  return new Promise((resolve) => {
+    let filtered = [...mockProducts];
+
+    if (filters.category) {
+      filtered = filtered.filter((p) => p.category === filters.category);
+    }
+    if (filters.ecoGrade) {
+      filtered = filtered.filter((p) => p.ecoGrade === filters.ecoGrade);
+    }
+    if (filters.priceRange) {
+      const [min, max] = filters.priceRange.split("-").map(Number);
+      filtered = filtered.filter((p) => p.price >= min && p.price <= max);
+    }
+
+    // simulate network delay
+    setTimeout(() => resolve(filtered), 300);
+  });
+}
+
+// Alternative implementation that fetches products by barcode
+export async function getFilteredProductsByBarcode(filters) {
+  const barcodes = ["3017624010701", "737628064502", "0048151623426"];
+
+  const prods = await Promise.all(
+    barcodes.map(async (code) => {
+      try {
+        return await fetchProductByBarcode(code);
+      } catch {
+        return null;
+      }
+    })
+  );
+
+  return prods.filter(Boolean);
+}
+
+// Note: fetchProductByBarcode would need to be implemented separately
+// as it's not included in the provided code snippets
