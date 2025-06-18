@@ -25,7 +25,7 @@ import { useEffect } from "react";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
-  const cartCount = 2;
+  const cartCount = {};
 
   useEffect(() => {
     const root = document.documentElement;
