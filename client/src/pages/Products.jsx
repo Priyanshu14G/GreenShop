@@ -148,15 +148,13 @@ function ProductCard({ product, index }) {
             </div>
             <button
               onClick={handlePurchase}
-              disabled={purchased}
+              // disabled={purchased}
               className={`${
-                purchased
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
-              } text-white px-6 py-2 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-2`}
-            >
-              <Sparkles className="w-4 h-4" />
-              {purchased ? "Purchased" : "Buy"}
+                "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
+              } text-white px-6 py-2 cursor-pointer rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-2`}
+            >Add to cart
+              {/* <Sparkles className="w-4 h-4" /> */}
+              {/* {purchased ? "Purchased" : "Buy"} */}
             </button>
           </div>
         </div>
@@ -318,7 +316,7 @@ export default function ProductsPage() {
                 <div className="flex bg-gray-100 dark:bg-gray-800 rounded-2xl p-1 shadow-inner">
                   <button
                     onClick={() => setSortBy("eco")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`flex-1 flex items-center cursor-pointer justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
                       sortBy === "eco" 
                         ? "bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 shadow-lg" 
                         : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
@@ -329,7 +327,7 @@ export default function ProductsPage() {
                   </button>
                   <button
                     onClick={() => setSortBy("nutri")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`flex-1 flex items-center cursor-pointer justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
                       sortBy === "nutri" 
                         ? "bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 shadow-lg" 
                         : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
@@ -340,7 +338,7 @@ export default function ProductsPage() {
                   </button>
                   <button
                     onClick={() => setSortBy("name")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`flex-1 flex items-center cursor-pointer justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
                       sortBy === "name" 
                         ? "bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 shadow-lg" 
                         : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
