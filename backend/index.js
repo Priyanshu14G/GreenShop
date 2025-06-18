@@ -12,7 +12,11 @@ const { Pool } = pkg;
 const app = express();
 const PORT = 4000;
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173", // ✅ Your frontend origin
+  credentials: true                // ✅ Allow sending tokens/cookies
+}));
+
 app.use(express.json());
 
 const pool = new Pool({
@@ -51,7 +55,6 @@ app.get("/api/products", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 // POST /purchase — requires authentication
 app.post("/api/purchase", requireAuth, async (req, res) => {
   const { userId } = req.auth;
@@ -64,7 +67,7 @@ app.post("/api/purchase", requireAuth, async (req, res) => {
       throw new Error("User email not found");
     }
 
-    const { product_code, product_name } = req.body;
+    const { product_code, product_name, price, image_url } = req.body; // ✅ added image_url
 
     await pool.query(
       `INSERT INTO users (id, email)
@@ -74,9 +77,9 @@ app.post("/api/purchase", requireAuth, async (req, res) => {
     );
 
     await pool.query(
-      `INSERT INTO purchases (user_id, product_code, product_name)
-       VALUES ($1, $2, $3)`,
-      [userId, product_code, product_name]
+      `INSERT INTO purchases (user_id, product_code, product_name, price, image_url)
+       VALUES ($1, $2, $3, $4, $5)`, // ✅ updated with image_url
+      [userId, product_code, product_name, price, image_url]
     );
 
     res.json({ success: true });
@@ -87,6 +90,52 @@ app.post("/api/purchase", requireAuth, async (req, res) => {
       details:
         "Ensure your users table has an 'email' column that allows nulls or has a default.",
     });
+  }
+});
+
+// GET /purchases — requires authentication
+app.get("/api/purchases", requireAuth, async (req, res) => {
+  const { userId } = req.auth;
+
+  try {
+    const result = await pool.query(
+      `SELECT product_code, product_name, price, image_url
+       FROM purchases 
+       WHERE user_id = $1 
+       ORDER BY purchased_at DESC`, // ✅ includes image_url now
+      [userId]
+    );
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching purchases:", error);
+    res.status(500).json({ error: "Failed to fetch purchases" });
+  }
+});
+
+// Add this new endpoint before app.listen()
+
+// DELETE /purchase — requires authentication
+app.delete("/api/purchase/:productCode", requireAuth, async (req, res) => {
+  const { userId } = req.auth;
+  const { productCode } = req.params;
+
+  try {
+    const result = await pool.query(
+      `DELETE FROM purchases 
+       WHERE user_id = $1 AND product_code = $2
+       RETURNING *`,
+      [userId, productCode]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "Product not found in purchases" });
+    }
+
+    res.json({ success: true, deleted: result.rows[0] });
+  } catch (error) {
+    console.error("Error deleting purchase:", error);
+    res.status(500).json({ error: "Failed to remove purchase" });
   }
 });
 

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@clerk/clerk-react";
 import { Search, Filter, Sparkles, Leaf, Apple, AlignLeft, Grid, List, ChevronDown, Star, Zap, Recycle } from "lucide-react";
-
-// Grade color mappings for stunning visuals
 const GRADE_COLORS = {
   "a-plus": "from-emerald-400 via-green-400 to-teal-500",
   "a": "from-green-400 via-lime-400 to-emerald-500", 
@@ -11,9 +9,7 @@ const GRADE_COLORS = {
   "d": "from-red-400 via-rose-400 to-pink-500",
   "e": "from-pink-500 via-purple-500 to-violet-500",
   "unknown": "from-gray-400 via-slate-400 to-gray-500"
-};
-
-const GRADE_SHADOWS = {
+};const GRADE_SHADOWS = {
   "a-plus": "shadow-emerald-500/25",
   "a": "shadow-green-500/25",
   "b": "shadow-yellow-500/25", 
@@ -22,33 +18,31 @@ const GRADE_SHADOWS = {
   "e": "shadow-purple-500/25",
   "unknown": "shadow-gray-500/25"
 };
-
- function ProductCard({ product, index }) {
-  const { getToken } = useAuth()
+function ProductCard({ product, index }) {
+  const { getToken } = useAuth();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [purchased, setPurchased] = useState(false);
 
   const ecoGrade = product.environmental_score_data?.grade || "unknown";
   const nutriGrade = product.nutriscore_grade || "unknown";
+  const price = (parseInt(product.code) % 50 + 5.99).toFixed(2);
 
- const handlePurchase = async () => {
+  const handlePurchase = async () => {
   try {
-    const token = await getToken(); // 🔐 get user's session token
-
-    // ✅ Try to extract carbon emission from product (adjust key if needed)
-    const carbon_emission = product.ecoscore_data?.carbon_footprint_estimated ?? null;
+    const token = await getToken();
 
     const res = await fetch("/api/purchase", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // ✅ pass token in Authorization header
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         product_code: product.code,
         product_name: product.product_name,
-        carbon_emission, // ✅ include it in payload
+        price: price, 
+        image_url: product.image_url || product.image_front_url, 
       }),
     });
 
@@ -56,13 +50,16 @@ const GRADE_SHADOWS = {
       setPurchased(true);
       alert("✅ Purchase recorded!");
     } else {
-      alert("❌ Failed to record purchase.");
+      const errorData = await res.json();
+      console.error("Purchase failed:", errorData);
+      alert(`❌ Failed to record purchase: ${errorData.error}`);
     }
   } catch (error) {
     console.error("❌ Purchase error:", error);
-    alert("❌ Error occurred while purchasing.");
+    alert("❌ Error occurred while purchasing. Check console for details.");
   }
 };
+
   return (
     <div
       className={`group relative transform transition-all duration-700 hover:scale-105 hover:-translate-y-4 ${
@@ -90,7 +87,7 @@ const GRADE_SHADOWS = {
               <img
                 src={product.image_url}
                 alt={product.product_name}
-                className={`w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 ${
+                className={`w-full h-full  transition-all duration-1000 group-hover:scale-110 ${
                   imageLoaded ? "opacity-100 blur-0" : "opacity-0 blur-sm"
                 }`}
                 onLoad={() => setImageLoaded(true)}
@@ -144,10 +141,10 @@ const GRADE_SHADOWS = {
             </span>
           </div>
 
-          {/* 💰 Buy Button */}
+          {/* Buy Button */}
           <div className="flex items-center justify-between pt-2">
             <div className="text-2xl font-bold text-gray-900 dark:text-white">
-              ${product.price || "0.00"}
+              ${price}
             </div>
             <button
               onClick={handlePurchase}
@@ -169,7 +166,6 @@ const GRADE_SHADOWS = {
     </div>
   );
 }
-
 
 function ProductGridSkeleton() {
   return (
