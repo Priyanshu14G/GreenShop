@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@clerk/clerk-react";
 import { Search, Filter, Sparkles, Leaf, Apple, AlignLeft, Grid, List, ChevronDown, Star, Zap, Recycle } from "lucide-react";
+// import FilterSidebar from "../components/FilterSidebar"; // Adjust path if needed
+import FilterSidebar from "../components/FilterSidebar"
+
 const GRADE_COLORS = {
   "a-plus": "from-emerald-400 via-green-400 to-teal-500",
   "a": "from-green-400 via-lime-400 to-emerald-500", 
@@ -9,7 +12,9 @@ const GRADE_COLORS = {
   "d": "from-red-400 via-rose-400 to-pink-500",
   "e": "from-pink-500 via-purple-500 to-violet-500",
   "unknown": "from-gray-400 via-slate-400 to-gray-500"
-};const GRADE_SHADOWS = {
+};
+
+const GRADE_SHADOWS = {
   "a-plus": "shadow-emerald-500/25",
   "a": "shadow-green-500/25",
   "b": "shadow-yellow-500/25", 
@@ -18,6 +23,7 @@ const GRADE_COLORS = {
   "e": "shadow-purple-500/25",
   "unknown": "shadow-gray-500/25"
 };
+
 function ProductCard({ product, index }) {
   const { getToken } = useAuth();
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -29,36 +35,36 @@ function ProductCard({ product, index }) {
   const price = (parseInt(product.code) % 50 + 5.99).toFixed(2);
 
   const handlePurchase = async () => {
-  try {
-    const token = await getToken();
+    try {
+      const token = await getToken();
 
-    const res = await fetch("/api/purchase", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        product_code: product.code,
-        product_name: product.product_name,
-        price: price, 
-        image_url: product.image_url || product.image_front_url, 
-      }),
-    });
+      const res = await fetch("/api/purchase", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          product_code: product.code,
+          product_name: product.product_name,
+          price: price, 
+          image_url: product.image_url || product.image_front_url, 
+        }),
+      });
 
-    if (res.ok) {
-      setPurchased(true);
-      alert("✅ Purchase recorded!");
-    } else {
-      const errorData = await res.json();
-      console.error("Purchase failed:", errorData);
-      alert(`❌ Failed to record purchase: ${errorData.error}`);
+      if (res.ok) {
+        setPurchased(true);
+        alert("✅ Purchase recorded!");
+      } else {
+        const errorData = await res.json();
+        console.error("Purchase failed:", errorData);
+        alert(`❌ Failed to record purchase: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error("❌ Purchase error:", error);
+      alert("❌ Error occurred while purchasing. Check console for details.");
     }
-  } catch (error) {
-    console.error("❌ Purchase error:", error);
-    alert("❌ Error occurred while purchasing. Check console for details.");
-  }
-};
+  };
 
   return (
     <div
@@ -87,7 +93,7 @@ function ProductCard({ product, index }) {
               <img
                 src={product.image_url}
                 alt={product.product_name}
-                className={`w-full h-full  transition-all duration-1000 group-hover:scale-110 ${
+                className={`w-full h-full transition-all duration-1000 group-hover:scale-110 ${
                   imageLoaded ? "opacity-100 blur-0" : "opacity-0 blur-sm"
                 }`}
                 onLoad={() => setImageLoaded(true)}
@@ -148,20 +154,132 @@ function ProductCard({ product, index }) {
             </div>
             <button
               onClick={handlePurchase}
-              disabled={purchased}
-              className={`${
-                purchased
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
-              } text-white px-6 py-2 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-2`}
+              className={`bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2 cursor-pointer rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-2`}
             >
-              <Sparkles className="w-4 h-4" />
-              {purchased ? "Purchased" : "Buy"}
+              Add to cart
             </button>
           </div>
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      </div>
+    </div>
+  );
+}
+
+function ProductDetail({ product }) {
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [loadingRelated, setLoadingRelated] = useState(true);
+
+  useEffect(() => {
+    if (product?.code) {
+      setLoadingRelated(true);
+      fetch(`/api/recommend/related/${product.code}`)
+        .then(res => res.json())
+        .then(data => {
+          setRelatedProducts(data);
+          setLoadingRelated(false);
+        })
+        .catch(err => {
+          console.error("Failed to fetch related products:", err);
+          setLoadingRelated(false);
+        });
+    }
+  }, [product?.code]);
+
+  if (!product) return <div>Loading product details...</div>;
+
+  const ecoGrade = product.environmental_score_data?.grade || "unknown";
+  const nutriGrade = product.nutriscore_grade || "unknown";
+  const price = (parseInt(product.code) % 50 + 5.99).toFixed(2);
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Product Image */}
+        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl rounded-3xl overflow-hidden border border-white/20 dark:border-gray-800/50 shadow-2xl">
+          <div className="relative h-96 overflow-hidden bg-gradient-to-br from-green-50 to-emerald-100 dark:from-gray-800 dark:to-gray-700">
+            {product.image_url ? (
+              <img
+                src={product.image_url}
+                alt={product.product_name}
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-100 to-emerald-200 dark:from-gray-700 dark:to-gray-600">
+                <div className="text-6xl opacity-50">🌿</div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Product Details */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-4">
+            <div className={`bg-gradient-to-r ${GRADE_COLORS[ecoGrade]} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg ${GRADE_SHADOWS[ecoGrade]} flex items-center gap-2`}>
+              <Leaf className="w-4 h-4" />
+              Eco Score: {ecoGrade.toUpperCase()}
+            </div>
+            <div className={`bg-gradient-to-r ${GRADE_COLORS[nutriGrade]} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg ${GRADE_SHADOWS[nutriGrade]} flex items-center gap-2`}>
+              <Apple className="w-4 h-4" />
+              Nutri Score: {nutriGrade.toUpperCase()}
+            </div>
+          </div>
+
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+            {product.product_name}
+          </h1>
+
+          <p className="text-2xl font-bold text-gray-900 dark:text-white">
+            ${price}
+          </p>
+
+          <div className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-lg inline-block">
+            {product.brand || "Eco Brand"}
+          </div>
+
+          <p className="text-gray-700 dark:text-gray-300">
+            {product.description || "Sustainable product with eco-friendly design"}
+          </p>
+
+          <div className="pt-4">
+            <button
+              className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-2"
+            >
+              <Sparkles className="w-5 h-5" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Related Products */}
+      <div className="mt-16">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Related Sustainable Products</h2>
+        
+        {loadingRelated ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 dark:border-gray-800/50 shadow-lg animate-pulse">
+                <div className="h-48 bg-gray-200 dark:bg-gray-700" />
+                <div className="p-4 space-y-2">
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : relatedProducts.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {relatedProducts.map((product) => (
+              <ProductCard key={product.code} product={product} index={0} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8">
+            <p className="text-gray-600 dark:text-gray-400">No related products found</p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -192,7 +310,7 @@ function ProductGridSkeleton() {
   );
 }
 
-export default function ProductsPage() {
+export default function ProductsPage({ product }) {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -202,12 +320,16 @@ export default function ProductsPage() {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (!product) {
+      fetchProducts();
+    }
+  }, [product]);
 
   useEffect(() => {
-    filterAndSortProducts();
-  }, [products, searchTerm, sortBy]);
+    if (!product) {
+      filterAndSortProducts();
+    }
+  }, [products, searchTerm, sortBy, product]);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -249,6 +371,12 @@ export default function ProductsPage() {
     setFilteredProducts(result);
   };
 
+  // If we have a specific product prop, show the detail view
+  if (product) {
+    return <ProductDetail product={product} />;
+  }
+
+  // Otherwise show the product grid view
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-emerald-900 relative overflow-hidden">
       {/* Animated background elements */}
@@ -318,7 +446,7 @@ export default function ProductsPage() {
                 <div className="flex bg-gray-100 dark:bg-gray-800 rounded-2xl p-1 shadow-inner">
                   <button
                     onClick={() => setSortBy("eco")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`flex-1 flex items-center cursor-pointer justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
                       sortBy === "eco" 
                         ? "bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 shadow-lg" 
                         : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
@@ -329,7 +457,7 @@ export default function ProductsPage() {
                   </button>
                   <button
                     onClick={() => setSortBy("nutri")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`flex-1 flex items-center cursor-pointer justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
                       sortBy === "nutri" 
                         ? "bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 shadow-lg" 
                         : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
@@ -340,7 +468,7 @@ export default function ProductsPage() {
                   </button>
                   <button
                     onClick={() => setSortBy("name")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`flex-1 flex items-center cursor-pointer justify-center gap-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
                       sortBy === "name" 
                         ? "bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 shadow-lg" 
                         : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
@@ -393,19 +521,36 @@ export default function ProductsPage() {
         </div>
 
         {/* Product Grid */}
-        {loading ? (
-          <ProductGridSkeleton />
-        ) : filteredProducts.length > 0 ? (
-          <div className={`grid gap-8 ${
-            viewMode === "grid" 
-              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
-              : "grid-cols-1 max-w-4xl mx-auto"
-          }`}>
-            {filteredProducts.map((product, index) => (
-              <ProductCard key={product.code} product={product} index={index} />
-            ))}
-          </div>
-        ) : (
+     {loading ? (
+  <ProductGridSkeleton />
+) : filteredProducts.length > 0 ? (
+  <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    {/* Filter Sidebar */}
+    <div className="hidden lg:block">
+      <FilterSidebar
+        products={products}
+        setFilteredProducts={setFilteredProducts}
+      />
+    </div>
+
+    {/* Products */}
+    <div className="lg:col-span-3">
+      <div
+        className={`grid gap-8 ${
+          viewMode === "grid"
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3"
+            : "grid-cols-1"
+        }`}
+      >
+        {filteredProducts.map((product, index) => (
+          <ProductCard key={product.code} product={product} index={index} />
+        ))}
+      </div>
+    </div>
+  </div>
+) : (
+
+
           <div className="text-center py-32">
             <div className="relative mb-8">
               <div className="w-32 h-32 bg-gradient-to-br from-green-100 to-emerald-200 dark:from-green-900/30 dark:to-emerald-900/30 rounded-full flex items-center justify-center mx-auto shadow-2xl">
