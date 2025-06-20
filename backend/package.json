@@ -14,11 +14,11 @@
   "description": "",
   "dependencies": {
     "@algolia/client-search": "^5.28.0",
-    "@algolia/recommend": "^5.28.0",
+    "@algolia/recommend": "^5.29.0",
     "@clerk/backend": "^2.1.0",
     "@clerk/clerk-sdk-node": "^4.13.23",
     "@clerk/express": "^1.7.0",
-    "algoliasearch": "^5.28.0",
+    "algoliasearch": "^5.29.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
