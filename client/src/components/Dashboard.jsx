@@ -142,15 +142,15 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-8 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex flex-wrap gap-2 mb-8 cursor-pointer border-b border-gray-200 dark:border-gray-700">
           {["overview", "impact", "badges", "goals"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-t-lg text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-t-lg text-sm font-medium cursor-pointertransition-colors ${
                 activeTab === tab
-                  ? "text-green-600 dark:text-green-400 border-b-2 border-green-500 bg-green-50 dark:bg-green-900/20"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                  ? "cursor-pointer text-green-600 dark:text-green-400 border-b-2 border-green-500 bg-green-50 dark:bg-green-900/20"
+                  : "cursor-pointer text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
               }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
