@@ -31,5 +31,5 @@ app.get("/api/dashboard/:userId", (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`API server running on http://localhost:${PORT}`)
+  console.log(`API server running on ${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`)
 })

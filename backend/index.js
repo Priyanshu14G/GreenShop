@@ -37,7 +37,7 @@ const PORT = 4000;
 
 // Middleware
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.VITE_REACT_APP_FRONTEND_BASEURL,
   credentials: true
 }));
 app.use(express.json());
@@ -259,6 +259,6 @@ app.delete("/api/purchase/:productCode", requireAuth, async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running at process.env.VITE_REACT_APP_FRONTEND_BASEURL`);
 });
 

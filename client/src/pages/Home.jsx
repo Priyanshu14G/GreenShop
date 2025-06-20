@@ -238,7 +238,7 @@ function TrendingSection() {
         setLoading(true);
         setError(null);
         
-        const response = await fetch("http://localhost:4000/api/recommend/trending");
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/recommend/trending`);
         
         if (!response.ok) {
           const errorData = await response.json();

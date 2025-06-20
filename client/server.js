@@ -46,5 +46,5 @@ app.get("/api/dashboard/:userId", (req, res) => {
 });
 
 app.listen(3001, () =>
-  console.log("Mock server listening on http://localhost:3001")
+  console.log(`Mock server listening on ${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`)
 );
