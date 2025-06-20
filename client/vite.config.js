@@ -8,9 +8,6 @@ import path from 'path'
 export default defineConfig({
   plugins: [react(),
     tailwindcss(),
-    react({
-      include: ['**/*.jsx', '**/*.js'], // Process both .js and .jsx as JSX
-    }),
   ],server:{
     proxy:{
       '/api':{target: 'http://localhost:4000',

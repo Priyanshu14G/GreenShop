@@ -3,6 +3,7 @@
     {
       "code": "0012345678901",
       "product_name": "Organic Almond Milk",
+      "category": "food",
       "image_url": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/oga/oga00364/y/9.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 45 },
@@ -11,6 +12,7 @@
     {
       "code": "0012345678902",
       "product_name": "Eco-Friendly Bamboo Toothbrush",
+      "category": "personal_care",
       "image_url": "https://store.eco365.co.in/cdn/shop/products/Pack_of_2_-_new_700x700.jpg?v=1613055990",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 20 },
@@ -19,6 +21,7 @@
     {
       "code": "0012345678903",
       "product_name": "Plant-Based Protein Bar",
+      "category": "food",
       "image_url": "https://www.soulfuel.co.in/cdn/shop/files/PlantProteinCoffee_800x.png?v=1746530840",
       "nutriscore_grade": "b",
       "environmental_score_data": { "grade": "b", "score": 38 },
@@ -27,6 +30,7 @@
     {
       "code": "0012345678904",
       "product_name": "Recycled Paper Notebook",
+      "category": "stationery",
       "image_url": "https://www.rescript.in/assets/uploads/inventory/pro_67332cebca00417338554006848.png",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 18 },
@@ -35,6 +39,7 @@
     {
       "code": "0012345678905",
       "product_name": "Compostable Trash Bags",
+      "category": "home_essentials",
       "image_url": "https://healthybuddha.in/image/cache/catalog/compostablegarbagebags-500x515.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 22 },
@@ -43,6 +48,7 @@
     {
       "code": "0012345678906",
       "product_name": "Organic Quinoa",
+      "category": "food",
       "image_url": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/now/now06311/l/13.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 42 },
@@ -51,6 +57,7 @@
     {
       "code": "0012345678907",
       "product_name": "Biodegradable Dish Soap",
+      "category": "home_essentials",
       "image_url": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/481ac558-b6d0-46a8-8cf9-c765ba7fa5bc.__CR0,125,1000,750_PT0_SX600_V1___.jpg",
       "nutriscore_grade": "b",
       "environmental_score_data": { "grade": "a", "score": 26 },
@@ -59,6 +66,7 @@
     {
       "code": "0012345678908",
       "product_name": "Reusable Stainless Steel Water Bottle",
+      "category": "kitchen",
       "image_url": "https://ushashriram.in/cdn/shop/products/41xKdTk3ZDL.jpg?v=1690574251",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 15 },
@@ -67,6 +75,7 @@
     {
       "code": "0012345678909",
       "product_name": "Vegan Chocolate Bar",
+      "category": "food",
       "image_url": "https://www.auroville.com/cdn/shop/files/pondyclasic.jpg?v=1727280579&width=1445",
       "nutriscore_grade": "b",
       "environmental_score_data": { "grade": "b", "score": 40 },
@@ -75,6 +84,7 @@
     {
       "code": "0012345678910",
       "product_name": "Eco Laundry Detergent Sheets",
+      "category": "home_essentials",
       "image_url": "https://u-mercari-images.mercdn.net/photos/m56561405407_1.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 24 },
@@ -83,6 +93,7 @@
     {
       "code": "0012345678911",
       "product_name": "Organic Rolled Oats",
+      "category": "food",
       "image_url": "https://m.media-amazon.com/images/I/61Wq4sRM6IL.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 35 },
@@ -91,6 +102,7 @@
     {
       "code": "0012345678912",
       "product_name": "Natural Deodorant Stick",
+      "category": "personal_care",
       "image_url": "https://brownliving.in/cdn/shop/products/natural-deodorant-stick-spice-infusion-treewear-nd-si-deodorant-brown-living-780649.jpg?v=1682965141",
       "nutriscore_grade": "b",
       "environmental_score_data": { "grade": "a", "score": 30 },
@@ -99,6 +111,7 @@
     {
       "code": "0012345678913",
       "product_name": "Reusable Grocery Tote Bag",
+      "category": "accessories",
       "image_url": "https://images-cdn.ubuy.co.in/6652eb2e6554e019564915de-reusable-grocery-shopping-bags-with.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 10 },
@@ -107,6 +120,7 @@
     {
       "code": "0012345678914",
       "product_name": "Organic Green Tea",
+      "category": "food",
       "image_url": "https://www.tearaja.in/cdn/shop/products/organic-green-tea-tearaja-1.jpg?v=1704912609",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 36 },
@@ -115,6 +129,7 @@
     {
       "code": "0012345678915",
       "product_name": "Solar Powered Garden Light",
+      "category": "home_essentials",
       "image_url": "https://images-cdn.ubuy.co.in/66067d046c87cf51f019631c-12-pack-solar-pathway-lights-outdoor-led.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 12 },
@@ -123,6 +138,7 @@
     {
       "code": "0012345678916",
       "product_name": "Reusable Beeswax Food Wraps",
+      "category": "kitchen",
       "image_url": "https://m.media-amazon.com/images/I/81-cLbynG7L.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 14 },
@@ -131,6 +147,7 @@
     {
       "code": "0012345678917",
       "product_name": "Eco-Friendly Recycled Pens",
+      "category": "stationery",
       "image_url": "https://m.media-amazon.com/images/I/71kHaL55N9L._AC_UF1000,1000_QL80_.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 32 },
@@ -139,6 +156,7 @@
     {
       "code": "0012345678918",
       "product_name": "Vegan Mayonnaise",
+      "category": "food",
       "image_url": "https://m.media-amazon.com/images/I/716J+fthjBL.jpg",
       "nutriscore_grade": "b",
       "environmental_score_data": { "grade": "b", "score": 39 },
@@ -147,6 +165,7 @@
     {
       "code": "0012345678919",
       "product_name": "Eco-Friendly Floor Cleaner",
+      "category": "home_essentials",
       "image_url": "https://ecosyscleaners.com/cdn/shop/files/Cruelty_Free_Eco_Friendly_Floor_Cleaner.webp?v=1741070749&width=1445",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 19 },
@@ -155,6 +174,7 @@
     {
       "code": "0012345678920",
       "product_name": "Reusable Silicone Food Bags",
+      "category": "kitchen",
       "image_url": "https://m.media-amazon.com/images/I/41XmKFdPkoL._UF894,1000_QL80_.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 17 },
@@ -163,6 +183,7 @@
     {
       "code": "0012345678921",
       "product_name": "Biodegradable Cotton Swabs",
+      "category": "personal_care",
       "image_url": "https://m.media-amazon.com/images/I/71M623-FeUL._AC_UF1000,1000_QL80_.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 13 },
@@ -171,6 +192,7 @@
     {
       "code": "0012345678922",
       "product_name": "Hemp Fabric Tote Bag",
+      "category": "accessories",
       "image_url": "https://i.etsystatic.com/24428084/r/il/afafb8/5654726646/il_fullxfull.5654726646_e026.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 34 },
@@ -179,6 +201,7 @@
     {
       "code": "0012345678923",
       "product_name": "Zero-Waste Shampoo Bar",
+      "category": "personal_care",
       "image_url": "https://m.media-amazon.com/images/I/71IddDsisTL.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 25 },
@@ -187,6 +210,7 @@
     {
       "code": "0012345678924",
       "product_name": "Organic Coconut Oil",
+      "category": "food",
       "image_url": "https://www.tatanutrikorner.com/cdn/shop/files/B01A5O5H2G.MAIN.jpg?v=1734602648&width=1445",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 41 },
@@ -195,6 +219,7 @@
     {
       "code": "0012345678925",
       "product_name": "Eco Bamboo Hairbrush",
+      "category": "personal_care",
       "image_url": "https://m.media-amazon.com/images/I/81KB15JtHeL.jpg",
       "nutriscore_grade": "b",
       "environmental_score_data": { "grade": "a", "score": 21 },
@@ -203,6 +228,7 @@
     {
       "code": "0012345678926",
       "product_name": "Natural Loofah Sponge",
+      "category": "personal_care",
       "image_url": "https://brownliving.in/cdn/shop/products/natural-loofah-straight-round-eco-friendly-loofah-bottle-gourd-exfoliating-loofa-sun-dried-tbb-43-bath-accessories-brown-living-668720.jpg?v=1682965177",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 16 },
@@ -211,6 +237,7 @@
     {
       "code": "0012345678927",
       "product_name": "Recyclable Glass Food Containers",
+      "category": "kitchen",
       "image_url": "https://m.media-amazon.com/images/I/615o++D2aiL.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 33 },
@@ -219,6 +246,7 @@
     {
       "code": "0012345678928",
       "product_name": "Reusable Metal Straws",
+      "category": "kitchen",
       "image_url": "https://m.media-amazon.com/images/I/614C4T58k2L._UF894,1000_QL80_.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 12 },
@@ -227,6 +255,7 @@
     {
       "code": "0012345678929",
       "product_name": "Organic Dried Lentils",
+      "category": "food",
       "image_url": "https://cdn11.bigcommerce.com/s-j00trvqcfv/images/stencil/1280x1280/products/5653/35404/102710__10149.1658166120.jpg?c=1",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "b", "score": 37 },
@@ -235,6 +264,7 @@
     {
       "code": "0012345678930",
       "product_name": "Eco-Friendly Yoga Mat",
+      "category": "fitness",
       "image_url": "https://5.imimg.com/data5/PR/IH/JI/SELLER-91258151/tpe-yoga-mat-classic-6-mm-pro-yoga-mat-eco-friendly-non-slip-fitness-exercise-mat.jpg",
       "nutriscore_grade": "a",
       "environmental_score_data": { "grade": "a", "score": 20 },

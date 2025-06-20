@@ -10,7 +10,8 @@ import {
   Leaf,
   User,
 } from "lucide-react";
-import Button from "./ui/Button";
+// import Button from "./ui/Button";
+import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
 import useTheme from "../hooks/useTheme";
@@ -58,8 +59,21 @@ export default function Header() {
               >
                <p className="text-black dark:text-white text-sm font-medium hover:text-green-600 dark:hover:text-green-400 transition-colors"> Dashboard</p>
               </Link>
+              <Link
+                to="/group-buying"
+                className=""
+              >
+               <p className="text-black dark:text-white text-sm font-medium hover:text-green-600 dark:hover:text-green-400 transition-colors"> Group Buying</p>
+              </Link>
+              <Link
+                to="/sellerlayout"
+                className=""
+              >
+               <p className="text-black dark:text-white text-sm font-medium hover:text-green-600 dark:hover:text-green-400 transition-colors"> Sell</p>
+              </Link>
             </nav>
           </div>
+          
 
           <div className="flex-1 max-w-md mx-6 hidden md:block">
   <div className="relative">
