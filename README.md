@@ -2,7 +2,7 @@
 
 GreenShop is an AI-powered, eco-conscious e-commerce platform designed to help consumers make informed, sustainable purchasing decisions. Created for the Amazon HackOn Hackathon under the theme **Sustainable Shopping Experience**, GreenShop bridges the gap between eco-awareness and action by recommending green products, tracking user impact, and encouraging low-carbon choices.
 
-> 💻 [Live Demo](https://greenshop-eta.vercel.app/) | 🚀 Built with React, Node.js, Clerk, and NeonDB
+> 💻 [Live Demo](https://greenshop-eta.vercel.app/) 
 
 ---
 
