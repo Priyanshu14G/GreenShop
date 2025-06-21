@@ -305,7 +305,7 @@ export function SellerDashboard() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="submitproduct">
+        <TabsContent value="submit-product">
           <ProductSubmissionFlow />
         </TabsContent>
 
