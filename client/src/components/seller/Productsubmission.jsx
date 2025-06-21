@@ -462,7 +462,7 @@ export function ProductSubmissionFlow() {
                     <SelectTrigger className="dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
-                    <SelectContent className="dark:bg-gray-800 dark:border-gray-700">
+                    <SelectContent className="bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                       {categories.map((category) => (
                         <SelectItem key={category} value={category} className="dark:hover:bg-gray-700">
                           {category}
@@ -501,7 +501,7 @@ export function ProductSubmissionFlow() {
                           id={material}
                           checked={formData.materials.includes(material)}
                           onCheckedChange={() => handleArrayToggle("materials", material)}
-                          className="dark:border-gray-600"
+                          className="dark:border-gray-600 dark:text-white"
                         />
                         <Label htmlFor={material} className="text-sm dark:text-gray-300">
                           {material}
@@ -539,7 +539,7 @@ export function ProductSubmissionFlow() {
                           id={cert}
                           checked={formData.certifications.includes(cert)}
                           onCheckedChange={() => handleArrayToggle("certifications", cert)}
-                          className="dark:border-gray-600"
+                          className="dark:border-gray-600 dark:text-white"
                         />
                         <Label htmlFor={cert} className="text-sm dark:text-gray-300">
                           {cert}
@@ -577,7 +577,7 @@ export function ProductSubmissionFlow() {
                         <TooltipTrigger>
                           <Info className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                         </TooltipTrigger>
-                        <TooltipContent className="dark:bg-gray-800 dark:text-white">
+                        <TooltipContent className="dark:bg-gray-800 dark:text-white bg-white border">
                           <p>Handmade and traditional methods often have lower environmental impact</p>
                         </TooltipContent>
                       </Tooltip>
@@ -589,7 +589,7 @@ export function ProductSubmissionFlow() {
                       <SelectTrigger className="dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                         <SelectValue placeholder="Select method" />
                       </SelectTrigger>
-                      <SelectContent className="dark:bg-gray-800 dark:border-gray-700">
+                      <SelectContent className="dark:bg-gray-800 dark:border-gray-700 bg-white dark:text-white">
                         {manufacturingMethods.map((method) => (
                           <SelectItem key={method} value={method} className="dark:hover:bg-gray-700">
                             {method}
@@ -606,7 +606,7 @@ export function ProductSubmissionFlow() {
                         <TooltipTrigger>
                           <Info className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                         </TooltipTrigger>
-                        <TooltipContent className="dark:bg-gray-800 dark:text-white">
+                        <TooltipContent className="dark:bg-gray-800 dark:text-white bg-white border">
                           <p>Country affects shipping distance and carbon footprint calculations</p>
                         </TooltipContent>
                       </Tooltip>
@@ -618,7 +618,7 @@ export function ProductSubmissionFlow() {
                       <SelectTrigger className="dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                         <SelectValue placeholder="Select country" />
                       </SelectTrigger>
-                      <SelectContent className="dark:bg-gray-800 dark:border-gray-700">
+                      <SelectContent className="dark:bg-gray-800 dark:border-gray-700 bg-white dark:text-white">
                         {countries.map((country) => (
                           <SelectItem key={country} value={country} className="dark:hover:bg-gray-700">
                             <div className="flex items-center">
@@ -638,7 +638,7 @@ export function ProductSubmissionFlow() {
                         <TooltipTrigger>
                           <Info className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                         </TooltipTrigger>
-                        <TooltipContent className="dark:bg-gray-800 dark:text-white">
+                        <TooltipContent className="dark:bg-gray-800 dark:text-white bg-white border">
                           <p>Average distance from production to customer. Shorter distances reduce carbon footprint</p>
                         </TooltipContent>
                       </Tooltip>
@@ -663,7 +663,7 @@ export function ProductSubmissionFlow() {
                         <TooltipTrigger>
                           <Info className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                         </TooltipTrigger>
-                        <TooltipContent className="dark:bg-gray-800 dark:text-white">
+                        <TooltipContent className="dark:bg-gray-800 dark:text-white bg-white border">
                           <p>Energy used to produce one unit. Lower values improve eco-score</p>
                         </TooltipContent>
                       </Tooltip>
@@ -690,7 +690,7 @@ export function ProductSubmissionFlow() {
                       <TooltipTrigger>
                         <Info className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                       </TooltipTrigger>
-                      <TooltipContent className="dark:bg-gray-800 dark:text-white">
+                      <TooltipContent className="dark:bg-gray-800 dark:text-white bg-white border">
                         <p>Sustainable packaging options significantly improve your eco-score</p>
                       </TooltipContent>
                     </Tooltip>
@@ -702,7 +702,7 @@ export function ProductSubmissionFlow() {
                     <SelectTrigger className="dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                       <SelectValue placeholder="Select packaging type" />
                     </SelectTrigger>
-                    <SelectContent className="dark:bg-gray-800 dark:border-gray-700">
+                    <SelectContent className="dark:bg-gray-800 dark:border-gray-700 bg-white dark:text-white">
                       {packagingTypes.map((type) => (
                         <SelectItem key={type} value={type} className="dark:hover:bg-gray-700">
                           <div className="flex items-center">

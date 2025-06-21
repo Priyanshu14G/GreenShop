@@ -259,6 +259,6 @@ app.delete("/api/purchase/:productCode", requireAuth, async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at process.env.VITE_REACT_APP_FRONTEND_BASEURL`);
+  console.log(`🚀 Server running at ${process.env.VITE_REACT_APP_FRONTEND_BASEURL}`);
 });
 
