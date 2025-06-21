@@ -143,7 +143,7 @@ export function SellerDashboard() {
             Overview
           </TabsTrigger>
           <TabsTrigger 
-            value="submit-product" 
+            value="submitproduct" 
             className="data-[state=active]:bg-gray-100 dark:data-[state=active]:bg-gray-700 text-gray-900 dark:text-gray-100"
           >
             Submit New Product
@@ -221,7 +221,7 @@ export function SellerDashboard() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Button className="w-full justify-start" asChild>
-                  <Link href="/seller/submit-product">
+                  <Link href="/seller/submitproduct">
                     <Plus className="mr-2 h-4 w-4" />
                     Submit New Product
                   </Link>
@@ -305,7 +305,7 @@ export function SellerDashboard() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="submit-product">
+        <TabsContent value="submitproduct">
           <ProductSubmissionFlow />
         </TabsContent>
 
