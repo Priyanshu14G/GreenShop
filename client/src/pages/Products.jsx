@@ -38,7 +38,7 @@ function ProductCard({ product, index }) {
     try {
       const token = await getToken();
 
-      const res = await fetch(`${process.env.VITE_REACT_APP_BACKEND_BASEURL}/api/purchase`, {
+      const res = await fetch("/api/purchase", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -174,7 +174,7 @@ function ProductDetail({ product }) {
   useEffect(() => {
     if (product?.code) {
       setLoadingRelated(true);
-      fetch(`${process.env.VITE_REACT_APP_BACKEND_BASEURL}/api/recommend/related/${product.code}`)
+      fetch(`/api/recommend/related/${product.code}`)
         .then(res => res.json())
         .then(data => {
           setRelatedProducts(data);
@@ -334,7 +334,7 @@ export default function ProductsPage({ product }) {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.VITE_REACT_APP_BACKEND_BASEURL}/api/products`);
+      const response = await fetch("/api/products");
       const data = await response.json();
       setProducts(data);
     } catch (error) {
