@@ -98,13 +98,6 @@ GreenShop empowers users to:
 
 ---
 
-
-## 📬 Contact
-
-For queries or collaborations, connect via [LinkedIn](https://www.linkedin.com/in/priyanshuguptansut/)
-
----
-
 > 🌍 Let's Move Toward a Greener Future. One Product at a Time.
 
 
