@@ -91,7 +91,7 @@ GreenShop empowers users to:
 
 ## 🛣 Roadmap
 
-- [ ] Build full eco-dashboard with carbon analytics
+- [ ] Build full eco-dashboard with carbon analytics.
 - [ ] Integrate real-time AI-based recommendations
 - [ ] Connect to blockchain APIs for product verification
 - [ ] Launch rewards leaderboard
