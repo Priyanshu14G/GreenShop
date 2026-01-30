@@ -19,7 +19,7 @@ Despite a growing interest in sustainability, consumers still face challenges in
 
 GreenShop empowers users to:
 - Discover eco-conscious products through **AI-based recommendations**.
-- Understand **product impact** via **Eco Scores**.
+- Understand **product impact** via **Eco Score**.
 - Reduce their **carbon footprint** with **group buying and sustainable packaging**.
 - Track their **environmental impact** through a **personalized dashboard**.
 - Trust product sustainability through **mock blockchain-backed certification**.
